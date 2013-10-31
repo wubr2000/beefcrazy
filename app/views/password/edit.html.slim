@@ -6,10 +6,10 @@
         = form_for :user, url: reset_url, method: :put, html: { role: "form" } do |f|
           .form-group
             = f.label :password
-            = f.password_field :password, class: "form-control showable-password", placeholder: "Password"
+            = f.password_field :password, class: "form-control showable-password", placeholder: "w!nt3r_!s_c0m!ng"
           .form-group
             = f.label :password_confirmation
-            = f.password_field :password_confirmation, class: "form-control showable-password", placeholder: "Type it again"
+            = f.password_field :password_confirmation, class: "form-control showable-password", placeholder: "w!nt3r_!s_c0m!ng"
           .form-group
             => f.submit "Save", class: "btn btn-success"
             button#show-password-button.btn.btn-warning data-state="show" Show Passwords

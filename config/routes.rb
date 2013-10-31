@@ -18,4 +18,5 @@ Beefcrazy::Application.routes.draw do
   get 'terms'   => 'site#terms'
   
   root 'site#index'
+  
 end

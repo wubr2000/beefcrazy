@@ -9,6 +9,18 @@ html,
 body {
   height: 100%;
   background-color: #fff;
+  background: url(/assets/grilled-steak.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
+}
+
+a { text-decoration: none; }
+a:hover { text-decoration: none; } 
+
+.navbar {
+    background: rgba(0,0,0,0.7);
 }
 
 h1, caption {
@@ -26,6 +38,26 @@ h2, legend {
   border-bottom: 1px solid #5cb85c;
 }
 
+/* Override B3 .panel adding a subtly transparent background */
+.panel {
+  margin-top: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.white-font { color: white; }
+
+.margin-base-vertical {
+    margin: 40px 0;
+}
+
+.fixed-button-width {
+    width: 160px;
+}
+
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
@@ -38,13 +70,14 @@ h2, legend {
 }
 
 #loginform {
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 /* Set the fixed height of the footer here */
 #footer {
   height: 60px;
   background-color: #f5f5f5;
+  background: rgba(0,0,0,0.7);
 }
 
 
