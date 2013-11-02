@@ -2,32 +2,41 @@
 
 .row
   .col-md-6.col-md-offset-3.panel.panel-default
+    .logo.margin-base-vertical
+      = image_tag("/assets/beefcrazy_logo.png")
     h1.white-font.margin-base-vertical Where's the beef?
     p.white-font We know. Now you can too.
     form.margin-base-vertical
       p.input-group
         span.input-group-addon
           span.icon-envelope
-        input.form-control.input-lg name="email" placeholder="jonsnow@knowsnothi.ng" type="text"
-        / = text_area_tag :email, class: "form-control input-lg", placeholder: "jonsnow@knowsnothi.ng"
-      p.help-block.text-left
-        small We sell beef, not emails.
-    
+        input#user-email.form-control.input-lg name="email" placeholder="jonsnow@knowsnothi.ng" type="text"
+
     p.text-center
       button.btn.btn-info.btn-lg.fixed-button-width type="submit" Be Invited
-    p.text-center
-      button.btn.btn-info.btn-lg.fixed-button-width type="submit" Members Log In
-
-    .container.margin-base-vertical
+   
+    .container
       h3.text-center
         a href="https://www.twitter.com"
-          fa.icon-twitter
+          span.icon-twitter
           '
         a href="https://www.pinterest.com"
           span.icon-pinterest
-          '       
+          '
         a href="https://www.facebook.com"
           span.icon-facebook
-          '       
+          '
         a href="https://www.youtube.com"
           span.icon-youtube
+          '
+          p
+            small.small.text-center
+              p Member already? &nbsp; 
+              a#button.fixed-button-width onclick="submitWithEmail();" Log In here
+
+
+javascript:
+  function submitWithEmail() {
+    window.location = "/login?email=" + $('#user-email').val();
+    return false;
+  }

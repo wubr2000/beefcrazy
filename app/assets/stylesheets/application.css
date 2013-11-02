@@ -13,7 +13,7 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;;
+  background-size: cover;
 }
 
 a { text-decoration: none; }
@@ -27,7 +27,7 @@ h1, caption {
   font-size: 160%;
   text-align: left;
   line-height: 200%;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #fff;
 }
 
 h2, legend {
@@ -35,7 +35,7 @@ h2, legend {
   font-size: 130%;
   line-height: 1.5;
   color: #5cb85c;
-  border-bottom: 1px solid #5cb85c;
+  border-bottom: 1px solid #fff;
 }
 
 /* Override B3 .panel adding a subtly transparent background */
@@ -43,19 +43,27 @@ h2, legend {
   margin-top: 60px;
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
 }
 
 .white-font { color: white; }
 
 .margin-base-vertical {
-    margin: 40px 0;
+  margin: 40px 0;
 }
 
 .fixed-button-width {
-    width: 160px;
+  width: 140px;
+}
+
+.background-landing {
+  background: url(/assets/grilled-steak-bw.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 /* Wrapper for page content to push down footer */
@@ -69,7 +77,7 @@ h2, legend {
   padding: 0 0 60px;
 }
 
-#loginform {
+#loginform, #registration-form {
   margin-top: 60px;
 }
 

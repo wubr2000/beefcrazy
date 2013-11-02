@@ -24,7 +24,7 @@ html lang="en"
       .container
         .page
           == yield
-          
+
     #footer
       .container
         p.text-muted.credit
@@ -32,3 +32,7 @@ html lang="en"
           ' •
           => link_to "Terms of Use", terms_url
           ' • © 2013 Beefcrazy
+
+    == render partial: 'layouts/messages'
+          
+

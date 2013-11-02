@@ -2,6 +2,7 @@ class SessionController < ApplicationController
   before_action :is_authenticated?, only: [ :destroy ]
   
   def new
+    @email = params[:email]
     redirect_to root_url if current_user
   end
   
@@ -27,8 +28,7 @@ class SessionController < ApplicationController
         
         UserMailer.registration_email(@registrant, request).deliver
         
-        flash.now[:notice] = "An email with instructions for " +
-          "completing your registration has been sent to you."
+        flash.now[:notice] = "An email with instructions for completing your registration has been sent to you."
         render :new
       end
     else
@@ -39,7 +39,8 @@ class SessionController < ApplicationController
         session[:user_id] = @user.id
         redirect_to root_url
       else
-        render :new, error: "Unable to sign you in. Please try again."
+        flash.now[:error] = "Unable to sign you in. Please try again."
+        render :new
       end
     end
   end
