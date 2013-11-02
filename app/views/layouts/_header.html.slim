@@ -1,4 +1,12 @@
 .navbar.navbar-inverse.navbar-fixed-top
-  .container
+  .container-fluid
     span.navbar-brand.logo 
       = link_to image_tag("/assets/beefcrazy_logo.png"), root_url
+  .main-header.main-nav.main-nav-guest.pull-right
+    ul.nav.nav-pills.login-options
+        li.active
+          a#login-pill href="#" Sign in  
+        li
+          a#register-pill href="#" Register  
+        li
+          a#reset-pill href="#" Reset Password
