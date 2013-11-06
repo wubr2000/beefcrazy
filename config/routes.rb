@@ -20,6 +20,13 @@ Beefcrazy::Application.routes.draw do
   root 'site#index'
 
   # General subscriber mailer
-  post 'subscribe' => 'subscription#create'
+  post 'subscribe' => 'subscription#create', as: :subscribe
+
+  # resources :restaurant
+  # Restaurant Review section
+  get  'restaurant' => 'restaurant#new', as: :restaurant
+  post 'restaurant' => 'restaurant#create'
+
+  # Commenting section
   
 end

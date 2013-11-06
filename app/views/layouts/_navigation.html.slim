@@ -4,9 +4,9 @@
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    = link_to_unless_current "Beefcrazy", root_url, class: "navbar-brand logo" do
+    = link_to_unless_current image_tag("beefcrazy_logo.png"), root_url, class: "navbar-brand logo" do
       span.navbar-brand.logo 
-         = link_to image_tag("/assets/beefcrazy_logo.png"), root_url
+         = link_to image_tag("beefcrazy_logo.png"), root_url
     .collapse.navbar-collapse
       ul.nav.navbar-nav.pull-right
         li

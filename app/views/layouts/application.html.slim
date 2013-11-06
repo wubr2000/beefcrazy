@@ -27,11 +27,23 @@ html lang="en"
 
     #footer
       .container
-        p.text-muted.credit
-          => link_to "Privacy Policy", privacy_url
-          ' •
-          => link_to "Terms of Use", terms_url
-          ' • © 2013 Beefcrazy
+       p.text-muted.credit
+         a href="https://www.twitter.com"
+          big.icon-twitter.pull-left
+          '
+         a href="https://www.pinterest.com"
+          big.icon-pinterest.pull-left
+          '
+         a href="https://www.facebook.com"
+          big.icon-facebook.pull-left
+          '
+         a href="https://www.youtube.com"
+          big.icon-youtube.pull-left
+          '
+         => link_to "Privacy Policy", privacy_url
+         ' &middot;
+         => link_to "Terms of Use", terms_url
+         ' &middot; &copy; 2013 Beefcrazy
 
     == render partial: 'layouts/messages'
           

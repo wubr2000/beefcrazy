@@ -13,7 +13,6 @@ class SiteController < ApplicationController
 
   def logged_in
     @users = User.all.entries
-    
   end
   
   def privacy

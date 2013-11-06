@@ -3,17 +3,20 @@
 .row
   .col-md-6.col-md-offset-3.panel.panel-default
     .logo.margin-base-vertical
-      = image_tag("/assets/beefcrazy_logo.png")
+      = image_tag("beefcrazy_logo.png")
     h1.white-font.margin-base-vertical Where's the beef?
     p.white-font We know. Now you can too.
-    form.margin-base-vertical
-      p.input-group
-        span.input-group-addon
-          span.icon-envelope
-        input#user-email.form-control.input-lg name="email" placeholder="jonsnow@knowsnothi.ng" type="text"
-
-    p.text-center
-      button.btn.btn-info.btn-lg.fixed-button-width type="submit" Be Invited
+    =form_for :subscriber, url: subscribe_url, html: { role: "form", id: "loginform" } do |f|
+      .margin-base-vertical
+        p.input-group
+          span.input-group-addon
+            span.icon-envelope
+          =f.text_field :email, class: "form-control", placeholder: "jonsnow@knowsnothi.ng"
+          //input#user-email.form-control.input-lg name="email" placeholder="jonsnow@knowsnothi.ng" type="text"
+        p.text-center
+          =>f.submit "Be Invited", class: "btn btn-success fixed-button-width", id: 'submit-button'
+      / p.text-center
+      /   button.btn.btn-info.btn-lg.fixed-button-width type="submit" Be Invited
    
     .container
       h3.text-center
@@ -32,11 +35,12 @@
           p
             small.small.text-center
               p Member already? &nbsp; 
-              a#button.fixed-button-width onclick="submitWithEmail();" Log In here
+              /a#button.fixed-button-width, onclick="submitwithEmail();" 
+              a href="/login" Log In here
 
 
-javascript:
-  function submitWithEmail() {
-    window.location = "/login?email=" + $('#user-email').val();
-    return false;
-  }
+/ javascript:
+/   function submitWithEmail() {
+/     window.location = "/login?email=" + $('#user-email').val();
+/     return false;
+/   }

@@ -15,9 +15,11 @@ class UserMailer < ActionMailer::Base
     mail to: @registrant.email, subject: "Beefcrazy: Complete your registration"
   end
 
-  def subscribe_email(subscribe, request)
+  def subscribe_email(subscriber, request)
     @subscriber = subscriber
     @host = request.protocol + request.host_with_port
     
     mail to: @subscriber.email, subject: "Beefcrazy: Thanks for your interest"
+  end
+  
 end

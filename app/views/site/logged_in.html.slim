@@ -1,15 +1,37 @@
-.row
-  .col-lg-6.col-lg-offset-3
-    table#users-table.table.table-bordered.table-striped
-      caption Our users!
-      thead
-        tr
-          th Name
-          th Email
-          th Created
-      tbody
-        - @users.each do |user|
-          tr
-            td #{user.name}
-            td #{user.email}
-            td #{user.created_at}
+.col-sm-4
+  .panel.panel-logged-in
+    .panel-heading
+      h3.panel-title.white-font Restaurant Reviews
+    .panel-body
+    = link_to image_tag("menu_pic.jpg"), restaurant_url
+
+.col-sm-4
+  .panel.panel-logged-in
+    .panel-heading
+      h3.panel-title.white-font Orders
+    .panel-body
+    = image_tag "order_pic.jpg"
+
+.col-sm-4
+  .panel.panel-logged-in
+    .panel-heading
+      h3.panel-title.white-font Recipes
+    .panel-body
+    = image_tag "recipe_pic.jpg"
+
+
+/ .row
+/   .col-lg-6.col-lg-offset-3
+/     table#users-table.table.table-bordered.table-striped
+/       caption Our users!
+/       thead
+/         tr
+/           th Name
+/           th Email
+/           th Created
+/       tbody
+/         - @users.each do |user|
+/           tr
+/             td #{user.name}
+/             td #{user.email}
+/             td #{user.created_at}
