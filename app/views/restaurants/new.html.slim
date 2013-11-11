@@ -1,0 +1,61 @@
+.row 
+  .col-lg-12.col-lg-offset-4
+    =link_to "Back to Restaurant Reviews", restaurants_url, class: "btn btn-lg btn-primary"
+
+.row
+  .col-lg-12
+    .panel.panel-danger
+      .panel-heading
+        h3.panel-title Submit New Review
+      .panel-body
+        = form_for @restaurant, html: { role: "form" } do |f|
+          .row
+            .col-lg-12
+              fieldset
+              .form-group.white-font
+                = f.label :name, "Restaurant Name"
+                = f.text_field :name, class: "form-control", placeholder: "Ruth's Chris"
+              .form-group.white-font
+                = f.label :address, "Location"
+                = f.text_field :address, class: "form-control", placeholder: "Central, Hong Kong"
+              .form-group.white-font
+                = f.label :review, "Review"
+                = f.text_area :review, size: "50x10", class: "form-control", placeholder: "I like this place because..."
+              .form-group.white-font
+                =>f.submit "Submit Review", class: "btn btn-success fixed-button-width", id: 'submit-button'
+
+  / - @restaurants.each do |restaurant|
+  /   .col-lg-8.pull-right
+  /     .panel.panel-danger
+  /       .panel-heading
+  /         h3.panel-title #{restaurant.name}
+  /         h5.text-muted #{restaurant.address}
+  /       .panel-body
+  /         p.text-muted Reviewer: #{restaurant.author}
+  /         p.white-font #{restaurant.review}
+
+  /         / h3.white-font Comments
+  /         / - @restaurant.comment.each do |comment| 
+  /         /   p.text-muted Commenter: #{comment.commenter}
+  /         /   p.text-muted #{comment.remark}
+
+  /         h3 Add a comment
+  /         =form_for([@restaurant, @restaurant.comment.build]) do |f| 
+  /           .row
+  /           .col-lg-10
+  /             fieldset
+  /             .form-group.white-font
+  /               = f.label :commenter, "Commenter's Name"
+  /               = f.text_field :commenter, class: "form-control", placeholder: "Tyrion"
+  /             .form-group.white-font
+  /               = f.label :remark, "Comment"
+  /               = f.text_area :remark
+  /             .form-group.white-font
+  /               =>f.submit "Submit Comment", class: "btn btn-success fixed-button-width", id: 'submit-button'
+ 
+          
+          
+
+
+
+

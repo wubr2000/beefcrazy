@@ -1,0 +1,114 @@
+.row 
+  .col-lg-12.col-lg-offset-4
+    =link_to "Submit A New Review", new_restaurant_url, class: "btn btn-lg btn-primary"
+
+  / .col-lg-6
+  /   .panel.panel-default
+  /       .panel-heading 
+  /         .panel-title
+  /         .h4 Search Venues Using Foursquare
+  /       .panel-body
+  /         p.white-font Please enter venue:
+  /         form#searchform action="#" method="GET"
+  /           input#query name="query" type="text" placeholder="Example: Happy Hour"
+  /           '
+  /           |
+  /           input#submit name="submit" type="submit" value="Submit"
+
+  /       p.white-font#venues
+
+
+- @restaurants.reverse.each do |restaurant|
+  .col-lg-12
+    .panel.panel-danger
+      .panel-heading
+        h3.panel-title #{restaurant.name}
+        h5.text-muted &nbsp;&nbsp;&nbsp;&nbsp;Location: #{restaurant.address}
+        h5.text-muted &nbsp;&nbsp;&nbsp;&nbsp;Reviewer: #{restaurant.author}
+      .panel-body
+        p.white-font #{restaurant.review} 
+
+        p.h5.white-font Number of comments: #{restaurant.comments.count}
+        
+        - restaurant.comments.each do |c|
+          p
+            .text-muted.btn.btn-default.fixed-comment-button-width data-toggle="collapse" data-target="#demo" Comment by #{c.commenter}: 
+
+            #demo.collapse-in.text-muted &nbsp;&nbsp;&nbsp;&nbsp;#{c.remark}
+        
+        =link_to "Add or Edit Comments", restaurant_comments_path(restaurant), class: "btn btn-primary"
+        p.pull-right
+          =link_to "Edit Review", edit_restaurant_path(restaurant), class: "btn btn-success fixed-button-width"
+          '
+          |        
+          =link_to "Delete Review", restaurant_path(restaurant), class: "btn btn-danger fixed-button-width", method: :delete, confirm: "Are you sure?"
+
+javascript:
+  $(function() {
+
+    //Collapsing Comments
+    $(".collapse").collapse()
+
+    //Retrieve the user's location using the HTML5 Geolocation API
+    $("#searchform").submit(function(event){
+      event.preventDefault();
+      if (!lat) {
+          navigator.geolocation.getCurrentPosition(getLocation);
+      } else {
+          getVenues();
+      }
+    });
+      
+    function getLocation(location) {
+      lat = location.coords.latitude;
+      lng = location.coords.longitude;
+    }
+
+    //Get data from Foursquare and Post
+    function getVenues() {
+    $.ajax({
+          type: "GET",
+          url: "https://api.foursquare.com/v2/venues/search?ll="+lat+","+lng+"&client_id=BMQWDAEOGTR4LSU2DZI43LPH15KOIX3NV2DMO4SLEYBBVCMC&client_secret=YOUR_CLIENT_SECRET&v=515C0FFL1BCYADW5MDABZ1OQY2HTFZMXHEGYW2NSK0QX1FHL&query="+$("#query").val()+"",
+          success: function(data) {
+            var dataobj = data.response.groups[0].items;
+            $("#venues").html("");
+            
+            $.each( dataobj, function() {
+                if (this.venue.categories[0]) {
+                    str = this.venue.categories[0].icon.prefix;
+                    newstr = str.substring(0, str.length - 1);
+                    icon = newstr+this.venue.categories[0].icon.suffix;
+                } else {
+                    icon = "";
+                }
+                
+                if (this.venue.contact.formattedPhone) {
+                    phone = "Phone:"+this.venue.contact.formattedPhone;
+                } else {
+                    phone = "";
+                }
+                
+                if (this.venue.location.address) {
+                    address = '<p class="subinfo">'+this.venue.location.address+'<br>';
+                } else {
+                    address = "";
+                }
+                
+                if (this.venue.rating) {
+                    rating = '<span class="rating">'+this.venue.rating+'</span>';
+                }
+                
+                appendeddatahtml = '</p><div class="venue"><h2><span>'+this.venue.name+'<img class="icon" src="'+icon+'"> '+rating+'</span></h2>'+address+phone+'<p></p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p></div>';
+                $("#venues").append(appendeddatahtml);
+                
+                });
+            }
+        });
+    }    
+
+
+
+  });
+
+  
+

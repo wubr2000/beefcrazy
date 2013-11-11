@@ -6062,7 +6062,7 @@ body.modal-open,
   left: 0;
   width: 15%;
   font-size: 20px;
-  color: #ffffff;
+  color: #428bca;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   opacity: 0.5;
@@ -6091,7 +6091,7 @@ body.modal-open,
 
 .carousel-control:hover,
 .carousel-control:focus {
-  color: #ffffff;
+  color: #428bca;
   text-decoration: none;
   opacity: 0.9;
   filter: alpha(opacity=90);
@@ -6144,7 +6144,7 @@ body.modal-open,
   margin: 1px;
   text-indent: -999px;
   cursor: pointer;
-  border: 1px solid #ffffff;
+  border: 1px solid #428bca;
   border-radius: 10px;
 }
 
@@ -6152,18 +6152,19 @@ body.modal-open,
   width: 12px;
   height: 12px;
   margin: 0;
-  background-color: #ffffff;
+  background-color: #428bca;
 }
 
 .carousel-caption {
   position: absolute;
+  /*margin-top: 50px;*/
   right: 15%;
-  bottom: 20px;
+  top: 20px;
   left: 15%;
   z-index: 10;
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #ffffff;
+  color: #fff;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }

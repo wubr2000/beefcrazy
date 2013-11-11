@@ -1,0 +1,25 @@
+.row 
+  .col-lg-12.col-lg-offset-4
+    =link_to "Back to Restaurant Reviews", restaurants_url, class: "btn btn-lg btn-primary"
+
+.row
+  .col-lg-12
+    .panel.panel-danger
+      .panel-heading
+        h3.panel-title Edit Review
+      .panel-body
+        = form_for @restaurant, html: { role: "form" } do |f|
+          .row
+            .col-lg-12
+              fieldset
+              .form-group.white-font
+                = f.label :name, "Restaurant Name"
+                = f.text_field :name, class: "form-control", placeholder: "Ruth's Chris"
+              .form-group.white-font
+                = f.label :address, "Location"
+                p = f.select :address, @restaurant_locations, :size => 5
+              .form-group.white-font
+                = f.label :review, "Review"
+                = f.text_area :review, size: "50x10", class: "form-control", placeholder: "I like this place because..."
+              .form-group.white-font
+                =>f.submit "Submit Review", class: "btn btn-success fixed-button-width", id: 'submit-button'

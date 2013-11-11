@@ -15,12 +15,13 @@ class RegistrationController < ApplicationController
 
     @user = User.new(user_params)
     @user.email = @registrant.email
+    @user.order = 0
     
     if @user.save
       @registrant.destroy
       
       session[:user_id] = @user.id
-      redirect_to root_url, notice: "Thank you for registering!"
+      redirect_to login_url, notice: "Thank you for registering!"
     else
       flash.now[:error] = "Something went wrong. Please check your data and try again."
       render :new

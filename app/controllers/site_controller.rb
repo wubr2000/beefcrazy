@@ -5,9 +5,9 @@ class SiteController < ApplicationController
     @users = User.all.entries
 
     if current_user
-    	render :logged_in
+    	render 'logged_in'
     else
-    	render :index, layout: "layouts/landing"
+    	render 'index', layout: "layouts/landing"
     end
   end
 

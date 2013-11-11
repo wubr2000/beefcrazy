@@ -6,7 +6,7 @@ class Comment
 
   field :id, type: String
   field :remark, type: String
-  field :user, type: String
+  field :commenter, type: String
 
   validates :remark, presence: true
   

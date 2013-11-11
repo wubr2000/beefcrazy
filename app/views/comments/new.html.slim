@@ -1,0 +1,22 @@
+.row 
+  .col-lg-12.col-lg-offset-4
+    =link_to "Back to Comments", restaurant_comments_path(@restaurant), class: "btn btn-lg btn-primary"
+
+.row
+  .col-lg-12
+    .panel.panel-danger
+      .panel-heading
+        h3.panel-title Add Your Comment
+      .panel-body
+        = form_for [@restaurant, @comment] do |f| 
+          .row
+            .col-lg-10
+              fieldset
+              .form-group.white-font
+                = f.label :commenter, "Commenter's Name"
+                = f.text_field :commenter, class: "form-control", placeholder: current_user.name
+              .form-group.white-font
+                = f.label :remark, "Comment"
+                = f.text_area :remark, size: "50x10", class: "form-control", placeholder: "I agree/disagree with the review because..."
+              .form-group.white-font
+                =>f.submit "Add Comment", class: "btn btn-success fixed-button-width", id: 'submit-button'

@@ -26,6 +26,7 @@ class PasswordController < ApplicationController
       flash.now[:error] = "Something went wrong. Please check your passwords and try again."
       render :edit
     end
+
   end
   
   private

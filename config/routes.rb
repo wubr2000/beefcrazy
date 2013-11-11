@@ -24,8 +24,16 @@ Beefcrazy::Application.routes.draw do
 
   # resources :restaurant
   # Restaurant Review section
-  get  'restaurant' => 'restaurant#new', as: :restaurant
-  post 'restaurant' => 'restaurant#create'
+  # get  'restaurant' => 'restaurant#new', as: :restaurant
+  # post 'restaurant' => 'restaurant#create'
+
+  #Nested - add a route so that Rails knows where we would like to navigate to see comments 
+  resources :restaurants do
+    resources :comments
+  end
+
+  resources :orders
+
 
   # Commenting section
   

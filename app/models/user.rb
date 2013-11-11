@@ -1,13 +1,16 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  
+
   attr_accessor :password, :password_confirmation
+
+  # has_many :orders
   
   field :id, type: String
   
   field :name, type: String
   field :email, type: String
+  field :order, type: Integer
   
   field :salt, type: String
   field :fish, type: String
@@ -20,7 +23,7 @@ class User
   validates :email, presence: true
   validates :email, uniqueness: { case_sensitive: false }
   validates :password, confirmation: true
-  
+
   def authenticate(password)
     self.fish == BCrypt::Engine.hash_secret(password, self.salt)
   end

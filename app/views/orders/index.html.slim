@@ -1,0 +1,84 @@
+.row
+  .col-lg-12
+  table#users-table.table.margin-base-vertical
+    /caption.white-font Order Form
+    thead
+      tr
+        th Name
+        th Number of Steaks
+    tbody
+      - @users.each do |user|
+        tr
+          td #{user.name}
+          td(id="order-amount-#{user.id}" class="order-amounts") #{user.order}
+      tr 
+        td TOTAL
+        td#sum
+
+  .panel.panel-default
+      .panel-heading 
+        .panel-title
+        .h4 #{current_user.name}'s Order
+      .panel-body
+        p.white-font Feel free to change your order. Enter "0" to cancel:
+        form#contactForm1 action=orders_url method="post"
+          input type="text" name="amount" id="order-amount"
+          '
+          |
+          button id="order-submit" class="btn btn-success"
+            | Submit
+
+javascript:
+  $(function() {
+
+    // SUM ALL ORDERS
+    var sum = 0;
+
+    $(".order-amounts").each(function() {
+
+      var value = $(this).text();
+      // add only if the value is number
+      if(!isNaN(value) && value.length != 0) {
+          sum += parseFloat(value);
+      }
+    });
+
+    $('#sum').text(sum);
+
+    //MODIFY ORDER, POST TO DB, AND RETURN VALUE TO TABLE
+    $('#order-submit').on('click', function(e) {
+        e.preventDefault();
+        var uploadData = {
+          amount: $('#order-amount').val()
+        };
+
+
+        var sum = 0;
+
+        $.ajax({
+          type: "PATCH",
+          url: "/orders/#{ current_user.id }",
+          data: uploadData
+        }).done(function(result) {
+
+          $('#order-amount-#{current_user.id}').text(result.order);
+
+          $(".order-amounts").each(function() {
+
+            var value = $(this).text();
+            // add only if the value is number
+            if(!isNaN(value) && value.length != 0) {
+                sum += parseFloat(value);
+            }
+          });
+
+          $('#sum').text(sum);
+
+        });
+
+    });
+
+  
+  });
+
+
