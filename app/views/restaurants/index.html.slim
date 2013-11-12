@@ -1,27 +1,27 @@
-.row 
-  .col-lg-12.col-lg-offset-4
-    =link_to "Submit A New Review", new_restaurant_url, class: "btn btn-lg btn-primary"
+.col-lg-12.col-lg-offset-4
+  =link_to "Submit A New Review", new_restaurant_url, class: "btn btn-lg btn-primary"
 
-  / .col-lg-6
-  /   .panel.panel-default
-  /       .panel-heading 
-  /         .panel-title
-  /         .h4 Search Venues Using Foursquare
-  /       .panel-body
-  /         p.white-font Please enter venue:
-  /         form#searchform action="#" method="GET"
-  /           input#query name="query" type="text" placeholder="Example: Happy Hour"
-  /           '
-  /           |
-  /           input#submit name="submit" type="submit" value="Submit"
+.col-lg-6
+  .panel.panel-default
+      .panel-heading 
+        a href="https://www.foursquare.com"
+        big.icon-foursquare.pull-left
+        h3.panel-title Venue Search Powered by Foursquare
+      .panel-body
+        p.white-font Please enter venue:
+        form#searchform action="#" method="GET"
+          input#query name="query" type="text" placeholder="Example: Happy Hour"
+          '
+          |
+          input#submit name="submit" type="submit" value="Submit"
 
-  /       p.white-font#venues
-
+      p.white-font#venues
 
 - @restaurants.reverse.each do |restaurant|
   .col-lg-12
     .panel.panel-danger
       .panel-heading
+        big.icon-bookmark.pull-left
         h3.panel-title #{restaurant.name}
         h5.text-muted &nbsp;&nbsp;&nbsp;&nbsp;Location: #{restaurant.address}
         h5.text-muted &nbsp;&nbsp;&nbsp;&nbsp;Reviewer: #{restaurant.author}
@@ -32,9 +32,9 @@
         
         - restaurant.comments.each do |c|
           p
-            #comment-button-text.text-muted.btn.btn-default data-toggle="collapse" data-target="#demo-#{c.id}" Comment by #{c.commenter}: 
-
-            .collapse.in.text-muted(id="demo-#{c.id}") &nbsp;&nbsp;&nbsp;&nbsp;#{c.remark}
+            #comment-button-text.text-muted.btn.btn-default.icon-comment data-toggle="collapse" data-target="#demo-#{c.id}"   Comment by #{c.commenter}: 
+            p
+            .collapse.in.white-font(id="demo-#{c.id}") &nbsp;&nbsp;&nbsp;&nbsp;#{c.remark}
         
         =link_to "Add or Edit Comments", restaurant_comments_path(restaurant), class: "btn btn-primary"
         p.pull-right

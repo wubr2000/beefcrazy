@@ -1,25 +1,26 @@
-.row 
-  .col-lg-12
-    =link_to "Add A Comment", new_restaurant_comment_path(@restaurant), class: "btn btn-lg btn-primary"
-    '
-    |
-    =link_to "Back to Restaurant Reviews", restaurants_url, class: "btn btn-lg btn-primary"
+.col-lg-12
+=link_to "Add A Comment", new_restaurant_comment_path(@restaurant), class: "btn btn-lg btn-primary"
+'
+|
+=link_to "Back to Restaurant Reviews", restaurants_url, class: "btn btn-lg btn-primary"
 
-.row
-  .col-lg-12
+.col-lg-12
+.panel.panel-danger 
+    .panel-heading
+      big.icon-bookmark.pull-left
+      h3.panel-title #{@restaurant.author}'s review for #{@restaurant.name}
+    .panel-body
+      p.white-font #{@restaurant.review}
+- @comments.each do |c|
   .panel.panel-danger 
-      .panel-heading
-        h3.panel-title Review for #{@restaurant.name}
-      .panel-body
-        p.white-font #{@restaurant.review}
-  - @comments.each do |c|
-    .panel.panel-danger 
-      .panel-heading
-        h3.panel-title #{c.commenter}'s Comment
-      .panel-body
-        p.white-font #{c.remark}
+    .panel-heading
+      big.icon-comment.pull-left
+      h3.panel-title #{c.commenter}'s Comment
+    .panel-body
+      p.white-font #{c.remark}
 
-        =link_to "Edit Comment", edit_restaurant_comment_path(@restaurant, c)
-        p
-        =link_to "Delete Comment", restaurant_comment_path(@restaurant, c), method: :delete, confirm: "Are you sure?" 
-        p 
+      =link_to "Edit Comment", edit_restaurant_comment_path(@restaurant, c), class: "btn btn-success fixed-button-width"
+      '
+      |
+      =link_to "Delete Comment", restaurant_comment_path(@restaurant, c), class: "btn btn-danger fixed-button-width", method: :delete, confirm: "Are you sure?" 
+      p 
