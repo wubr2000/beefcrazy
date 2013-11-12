@@ -119,6 +119,10 @@ h2, legend {
   border-radius: 7px;
 }
 
+.panel-body {
+  font-family: sans-serif;
+}
+
 .panel-logged-in {  
   float: left;
   overflow: hidden;
@@ -134,9 +138,11 @@ h2, legend {
   width: 140px;
 }
 
-.fixed-comment-button-width {
-  width: 250px;
-}
+#comment-button-text {
+    padding: 5px 8px 8px 10px;
+    text-align: left;
+    min-width: 250px;
+}​
 
 .background-landing {
   background: url(grilled-steak-bw.jpg) no-repeat center center fixed; 

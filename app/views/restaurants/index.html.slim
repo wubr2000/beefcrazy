@@ -32,9 +32,9 @@
         
         - restaurant.comments.each do |c|
           p
-            .text-muted.btn.btn-default.fixed-comment-button-width data-toggle="collapse" data-target="#demo" Comment by #{c.commenter}: 
+            #comment-button-text.text-muted.btn.btn-default data-toggle="collapse" data-target="#demo-#{c.id}" Comment by #{c.commenter}: 
 
-            #demo.collapse-in.text-muted &nbsp;&nbsp;&nbsp;&nbsp;#{c.remark}
+            .collapse.in.text-muted(id="demo-#{c.id}") &nbsp;&nbsp;&nbsp;&nbsp;#{c.remark}
         
         =link_to "Add or Edit Comments", restaurant_comments_path(restaurant), class: "btn btn-primary"
         p.pull-right
