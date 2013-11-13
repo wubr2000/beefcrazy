@@ -1,19 +1,19 @@
 .col-lg-12.col-lg-offset-4
   =link_to "Submit A New Review", new_restaurant_url, class: "btn btn-lg btn-primary"
 
-.col-lg-6
+.col-lg-12
   .panel.panel-default
-      .panel-heading 
-        a href="https://www.foursquare.com"
-        big.icon-foursquare.pull-left
-        h3.panel-title Venue Search Powered by Foursquare
-      .panel-body
-        p.white-font Please enter venue:
-        form#searchform action="#" method="GET"
-          input#query name="query" type="text" placeholder="Example: Happy Hour"
-          '
-          |
-          input#submit name="submit" type="submit" value="Submit"
+    .panel-heading 
+      a href="https://www.foursquare.com"
+      big.icon-foursquare.pull-left
+      h3.panel-title Venue Search Powered by Foursquare
+    .panel-body
+      p.white-font Please enter venue:
+      form#searchform action="#" method="GET"
+        input#query name="query" type="text" placeholder="Example: Peter Luger's"
+        '
+        |
+        input#submit name="submit" type="submit" value="Submit"
 
       p.white-font#venues
 
@@ -52,53 +52,55 @@ javascript:
     //Retrieve the user's location using the HTML5 Geolocation API
     $("#searchform").submit(function(event){
       event.preventDefault();
-      if (!lat) {
-          navigator.geolocation.getCurrentPosition(getLocation);
-      } else {
+      //if (!lat) {
+      //    navigator.geolocation.getCurrentPosition(getLocation);
+      //} else {
           getVenues();
-      }
+      //}
     });
       
-    function getLocation(location) {
-      lat = location.coords.latitude;
-      lng = location.coords.longitude;
-    }
+    //function getLocation(location) {
+    //  lat = location.coords.latitude;
+    //  lng = location.coords.longitude;
+    //}
 
     //Get data from Foursquare and Post
     function getVenues() {
     $.ajax({
           type: "GET",
-          url: "https://api.foursquare.com/v2/venues/search?ll="+lat+","+lng+"&client_id=BMQWDAEOGTR4LSU2DZI43LPH15KOIX3NV2DMO4SLEYBBVCMC&client_secret=YOUR_CLIENT_SECRET&v=515C0FFL1BCYADW5MDABZ1OQY2HTFZMXHEGYW2NSK0QX1FHL&query="+$("#query").val()+"",
+          url: "https://api.foursquare.com/v2/venues/search?client_id=BMQWDAEOGTR4LSU2DZI43LPH15KOIX3NV2DMO4SLEYBBVCMC&client_secret=515C0FFL1BCYADW5MDABZ1OQY2HTFZMXHEGYW2NSK0QX1FHL&v=20131101&ll=22.27,114.15&limit=4&query="+$("#query").val()+"",
           success: function(data) {
-            var dataobj = data.response.groups[0].items;
+            dataobj = data.response.venues;
             $("#venues").html("");
-            
+            console.log(dataobj)
+
             $.each( dataobj, function() {
-                if (this.venue.categories[0]) {
-                    str = this.venue.categories[0].icon.prefix;
+                if (this) {
+                console.log(this.categories[0])
+                    str = this.categories[0].icon.prefix;
                     newstr = str.substring(0, str.length - 1);
-                    icon = newstr+this.venue.categories[0].icon.suffix;
+                    icon = newstr+this.categories[0].icon.suffix;
                 } else {
                     icon = "";
                 }
                 
-                if (this.venue.contact.formattedPhone) {
-                    phone = "Phone:"+this.venue.contact.formattedPhone;
+                if (this.contact.formattedPhone) {
+                    phone = "Phone:"+this.contact.formattedPhone;
                 } else {
                     phone = "";
                 }
                 
-                if (this.venue.location.address) {
-                    address = '<p class="subinfo">'+this.venue.location.address+'<br>';
+                if (this.location.address) {
+                    address = '<p class="subinfo">'+this.location.address+'<br>';
                 } else {
                     address = "";
                 }
                 
-                if (this.venue.rating) {
-                    rating = '<span class="rating">'+this.venue.rating+'</span>';
+                if (this.rating) {
+                    rating = '<span class="rating">'+this.rating+'</span>';
                 }
                 
-                appendeddatahtml = '</p><div class="venue"><h2><span>'+this.venue.name+'<img class="icon" src="'+icon+'"> '+rating+'</span></h2>'+address+phone+'<p></p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p></div>';
+                appendeddatahtml = '</p><div class="venue"><h2><span>'+this.name+'</span></h2>'+address+phone+'<p></p><p><strong>Total Checkins:</strong> '+this.stats.checkinsCount+'</p></div>';
                 $("#venues").append(appendeddatahtml);
                 
                 });
