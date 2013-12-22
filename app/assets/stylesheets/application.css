@@ -124,7 +124,7 @@ h2, legend {
 }
 
 .panel-logged-in {  
-  float: left;
+  /*float: left;*/
   overflow: hidden;
 }
 

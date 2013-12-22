@@ -1,26 +1,26 @@
 .col-lg-12
-    .panel.panel-logged-in
-      #myCarousel.carousel.slide
-        ol.carousel-indicators
-          li.active data-slide-to="0" data-target="#myCarousel"
-          li data-slide-to="1" data-target="#myCarousel"
-          li data-slide-to="2" data-target="#myCarousel"
-        /! Carousel items
-        .carousel-inner
-          .active.item
-            = link_to image_tag("menu_pic.jpg"), restaurants_url
-            .panel.panel-default.h3.carousel-caption Restaurant Reviews
-          .item
-            = link_to image_tag("order_pic.jpg"), orders_url
-            .panel.panel-default.h3.carousel-caption Order Management
-          .item
-            = link_to image_tag("recipe_pic.jpg")
-            .panel.panel-logged-in.h3.carousel-caption Recipes
-        /! Carousel nav
-        a.carousel-control.left data-slide="prev" href="#myCarousel" 
-          span.icon-prev
-        a.carousel-control.right data-slide="next" href="#myCarousel" 
-          span.icon-next
+  .panel.panel-logged-in
+    #myCarousel.carousel.slide
+      ol.carousel-indicators
+        li data-slide-to="0" data-target="#myCarousel"
+        li.active data-slide-to="1" data-target="#myCarousel"
+        li data-slide-to="2" data-target="#myCarousel"
+      /! Carousel items
+      .carousel-inner
+        .item
+          = link_to image_tag("menu_pic.jpg"), restaurants_url
+          .panel.panel-default.h3.carousel-caption Restaurant Reviews
+        .active.item
+          = link_to image_tag("order_pic.jpg"), orders_url
+          .panel.panel-default.h3.carousel-caption Order Management
+        .item
+          = link_to image_tag("recipe_pic.jpg")
+          .panel.panel-logged-in.h3.carousel-caption Recipes
+      /! Carousel nav
+      a.carousel-control.left data-slide="prev" href="#myCarousel" 
+        span.icon-prev
+      a.carousel-control.right data-slide="next" href="#myCarousel" 
+        span.icon-next
 
 
 / .row
