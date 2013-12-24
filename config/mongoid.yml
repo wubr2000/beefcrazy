@@ -82,5 +82,7 @@ production:
       options:
         skip_version_check: true
         safe: true
+  options:
+    raise_not_found_error: false
 
 
