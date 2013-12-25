@@ -38,7 +38,7 @@ class RestaurantsController < ApplicationController
 
       redirect_to restaurants_url, notice: "Thank you for your review. Your comments have been posted."
     else
-      render :new, error: "Please put in restaurant's name."
+      redirect_to new_restaurant_path, notice: "Please put in restaurant's name."
     end
   end
 
