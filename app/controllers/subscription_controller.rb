@@ -8,6 +8,7 @@ class SubscriptionController < ApplicationController
     if @subscriber.save
       
       UserMailer.subscribe_email(@subscriber, request).deliver
+      UserMailer.someone_subscribed_email(@subscriber, request).deliver
       
       render :new, layout: "layouts/landing"
     
