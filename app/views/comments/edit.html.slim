@@ -12,7 +12,7 @@
             fieldset
             .form-group.white-font
               = f.label :commenter, "Commenter's Name"
-              = f.text_field :commenter, class: "form-control", placeholder: current_user.name
+              = f.text_field :commenter, class: "form-control", placeholder: current_user
             .form-group.white-font
               = f.label :remark, "Comment"
               = f.text_area :remark, size: "50x10", class: "form-control", placeholder: "I agree/disagree with the review because..."

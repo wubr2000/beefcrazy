@@ -23,6 +23,12 @@ class CommentsController < ApplicationController
 
   def edit
     #edit comment
+    @current_user = User.find_by(id: session[:user_id]).name
+
+    if @comment.commenter != @current_user
+      redirect_to restaurant_comments_path(@restaurant), notice: "You are not the author of this comment. You can only edit comments that you have created."
+    end
+
   end
 
   def show
@@ -41,8 +47,15 @@ class CommentsController < ApplicationController
 
   def destroy
     #destroy
-    @comment.destroy
-    redirect_to restaurant_comments_path(@restaurant), notice: 'Comment was successfully deleted.'
+    @current_user = User.find_by(id: session[:user_id]).name
+
+    if @comment.commenter != @current_user
+      redirect_to restaurant_comments_path(@restaurant), notice: "You are not the author of this comment. You can only delete comments that you have created."
+    else
+      @comment.destroy
+      redirect_to restaurant_comments_path(@restaurant), notice: 'Comment was successfully deleted.'
+    end
+
   end
 
 private

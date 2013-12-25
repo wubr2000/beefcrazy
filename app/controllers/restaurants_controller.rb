@@ -2,6 +2,11 @@ class RestaurantsController < ApplicationController
 
   def edit
     @restaurant = Restaurant.find(params[:id])
+    @current_user = User.find_by(id: session[:user_id]).name
+    
+    if @restaurant.author != @current_user
+      redirect_to restaurants_url, notice: "You are not the author of this review. You can only edit reviews that you have created."
+    end
     # @restaurant_locations = Restaurant.find(params[:id]).address
   end
 
@@ -20,7 +25,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     redirect_to edit_restaurant_path
   end
-
+  
   def new
     
     @restaurant = Restaurant.new
@@ -44,9 +49,16 @@ class RestaurantsController < ApplicationController
 
   def destroy
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.comments.destroy_all
-    @restaurant.destroy
-    redirect_to restaurants_url, notice: 'Review was successfully deleted.'
+    @current_user = User.find_by(id: session[:user_id]).name
+
+    if @restaurant.author != @current_user
+      redirect_to restaurants_url, notice: "You are not the author of this review. You can only delete reviews that you have created."
+    else
+      @restaurant.comments.destroy_all
+      @restaurant.destroy
+      redirect_to restaurants_url, notice: 'Review was successfully deleted.'
+    end
+
   end
 
   private
