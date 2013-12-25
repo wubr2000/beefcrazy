@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
 
   def edit
     @restaurant = Restaurant.find(params[:id])
-    @restaurant_locations = Restaurant::RESTAURANT_LOCATIONS
+    # @restaurant_locations = Restaurant.find(params[:id]).address
   end
 
   def update

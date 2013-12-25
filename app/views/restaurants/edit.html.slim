@@ -16,7 +16,7 @@
               = f.text_field :name, class: "form-control", placeholder: "Ruth's Chris"
             .form-group.white-font
               = f.label :address, "Location"
-              p = f.select :address, @restaurant_locations, :size => 5
+              p = f.text_field :address, class: "form-control", :size => 5
             .form-group.white-font
               = f.label :review, "Review"
               = f.text_area :review, size: "50x10", class: "form-control", placeholder: "I like this place because..."
